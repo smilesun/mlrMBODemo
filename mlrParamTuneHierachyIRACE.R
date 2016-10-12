@@ -1,21 +1,3 @@
-library(mlr)
-
-############################################
-ps = makeParamSet(
-  makeNumericParam("C", lower = -12, upper = 12, trafo = function(x) 2^x),
-  makeNumericParam("sigma", lower = -12, upper = 12, trafo = function(x) 2^x)
-)
-ctrl = makeTuneControlGrid(resolution = 2L)
-rdesc = makeResampleDesc("CV", iters = 2L)
-res = tuneParams("classif.ksvm", iris.task, rdesc, par.set = ps, control = ctrl)
-print(res)
-# access data for all evaluated points
-print(head(as.data.frame(res$opt.path)))
-print(head(as.data.frame(res$opt.path, trafo = TRUE)))
-# access data for all evaluated points - alternative
-print(head(generateHyperParsEffectData(res)))
-print(head(generateHyperParsEffectData(res, trafo = TRUE)))
-
 ## Not run: 
 # we optimize the SVM over 3 kernels simultanously
 # note how we use dependent params (requires = ...) and iterated F-racing here

@@ -1,5 +1,3 @@
-# fixme: currently due the weird behavior of Xgboost, this code does not run
-
 library(mlr)
 library(mlrMBO)
 load_all('~/mlrMBO')
